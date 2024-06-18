@@ -103,6 +103,16 @@ module GMO
         post_request name, options
       end
 
+      # 【PayPay決済】
+      #  取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_paypay(options = {})
+        name = "EntryTranPaypay.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end      
+
       ### @params ###
       # OrderID
       # JobCd
@@ -370,6 +380,16 @@ module GMO
         assert_required_options(required, options)
         post_request name, options
       end
+
+      # 【PayPay決済】
+      # 決済実行
+      def exec_tran_paypay(options = {})
+        name = "ExecTranPaypay.idPass"
+        required = [:access_id, :access_pass, :order_id, :ret_url]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
 
       # 【楽天ペイ決済】
       # 18.1.2.2. 決済実行
