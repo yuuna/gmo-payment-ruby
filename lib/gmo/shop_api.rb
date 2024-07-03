@@ -511,6 +511,13 @@ module GMO
         post_request name, options
       end
 
+      def paypay_sales(options = {})
+        name = "PaypaySales.idPass"
+        required = [:access_id, :access_pass, :order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.15.2.1.金額変更
       # 決済が完了した取引に対して金額の変更を行います。
       ### @return ###
