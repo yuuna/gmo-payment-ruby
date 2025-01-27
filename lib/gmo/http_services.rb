@@ -61,7 +61,7 @@ module GMO
               # converting to Shift-JIS
               sjis_value = NKF.nkf('-s', key_and_value[1])
               "#{key_and_value[0].to_s}=#{CGI.escape sjis_value}"
-            end).join("&")
+            end).join("&").gsub("RetUrl","RetURL")
           end
 
           def self.create_http(server, options)
