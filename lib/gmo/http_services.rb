@@ -44,11 +44,18 @@ module GMO
                 headers = { "Content-Type" => "application/json" }
                 h.post(path, args.to_json, headers)
               else
-                h.post(path, encode_params(args))
+                if /Paypay/ =~ path
+                  h.post(path, encode_params(args).gsub("RetUrl", "RetURL"))
+                else
+                  h.post(path, encode_params(args))
+                end
               end
             else
-              h.get("#{path}?#{encode_params(args)}")
-            end
+              if /Paypay/ =~ path
+                h.get("#{path}?#{encode_params(args).gsub("RetUrl", "RetURL")}")
+              else
+                h.get("#{path}?#{encode_params(args)}")
+              end
             GMO::Response.new(response.code.to_i, response.body, response)
           end
         end

@@ -385,7 +385,7 @@ module GMO
       # 決済実行
       def exec_tran_paypay(options = {})
         name = "ExecTranPaypay.idPass"
-        required = [:access_id, :access_pass, :order_id, :RetURL]
+        required = [:access_id, :access_pass, :order_id, :ret_url]
         assert_required_options(required, options)
         post_request name, options
       end
