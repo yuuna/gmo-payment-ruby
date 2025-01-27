@@ -56,6 +56,7 @@ module GMO
               else
                 h.get("#{path}?#{encode_params(args)}")
               end
+            end
             GMO::Response.new(response.code.to_i, response.body, response)
           end
         end
